@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="quiz">Quiz</string>
+    <string name="q1_kotlin_is">Q1. Kotlin is</string>
+    <string name="open_source">Open Source</string>
+    <string name="radio2">Hard to deal with</string>
+    <string name="radio3">Not interoperable</string>
+    <string name="Q2">Q2. Kotlin is</string>
+    <string name="check3">Not highly used</string>
+    <string name="check2">High Interoperability</string>
+    <string name="check1">Open Source</string>
+    <string name="submit">Submit</string>
+    <string name="reset">Reset</string>
+</resources>
