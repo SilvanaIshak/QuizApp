@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnSubmit.setOnClickListener {
-            var nowDate = LocalDateTime.now()
+            val nowDate = LocalDateTime.now()
 
             var totalScore = 0
 
@@ -39,19 +40,23 @@ class MainActivity : AppCompatActivity() {
                 totalScore += 25
             }
 
-            var formattedDate : String = DateTimeFormatter.ofPattern("dd/MM/yy hh:mm a").format(nowDate).toString()
+            val formattedDate : String = DateTimeFormatter.ofPattern("dd/MM/yy hh:mm a").format(nowDate).toString()
 
-            if (totalScore >= 50)
-            {
-                var message1 = "Congratulations! You submitted on $formattedDate You achieved $totalScore%"
-                Toast.makeText(this, message1, Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "You submitted on $formattedDate You achieved $totalScore%", Toast.LENGTH_LONG).show()
+            val congratulationString = if (totalScore >= 50) "Congratulations! " else ""
+            //Create an Alert dialog
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Quiz Result")
+            builder.setMessage("$congratulationString You submitted on $formattedDate You achieved $totalScore%")
+            builder.setIcon(android.R.drawable.ic_dialog_info)
+            //Give only dismiss button for alert
+            builder.setPositiveButton("Dismiss"){dialogInterface, which ->
+                Toast.makeText(applicationContext,"Dismissed",Toast.LENGTH_SHORT).show()
             }
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
 
         }
-
-
 
     }
 }
